@@ -2,30 +2,33 @@ import calculator
 import unittest
 
 
-class TestCalculator(unittest.TestCase):
+class TestClass(unittest.TestCase):
+
+    def setUp(self):
+        self.x = 34
+        self.y = 30
+
+    def tearDownClass(self):
+        self.x = 0
+        self.y = 0
+
     def test_Add(self):
-        x = 10
-        y = 20
-        result = calculator.add(x, y)
-        self.assertEqual(result, x + y)
+        # act
+        result = calculator.add(self.x, self.y)
+        # assert
+        self.assertEqual(result, self.x + self.y)
 
     def test_sub(self):
-        x = 10
-        y = 20
-        result = calculator.sub(x, y)
-        self.assertEqual(result, x - y)
+        result = calculator.sub(self.x, self.y)
+        self.assertEqual(result, self.x - self.y)
 
     def test_mult(self):
-        x = 10
-        y = 20
-        result = calculator.mult(x, y)
-        self.assertEqual(result, x * y)
+        result = calculator.mult(self.x, self.y)
+        self.assertEqual(result, self.x * self.y)
 
     def test_div(self):
-        x = 30
-        y = 10
-        result = calculator.div(x, y)
-        self.assertEqual(result, x)
+        result = calculator.div(self.x, self.y)
+        self.assertEqual(result, self.x / self.y)
 
     if __name__ == '__main__':
         unittest.main()
