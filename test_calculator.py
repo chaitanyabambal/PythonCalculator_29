@@ -1,34 +1,24 @@
+import pytest
+
 import calculator
-import unittest
+@pytest.mark.xfail
+@pytest.mark.parametrize("a,b,c",[(3,2,5),(10,12,15),(2,5,8),(7,8,15)])
+def test_add(a,b,c):
 
+    result=calculator.add(a,b)
+    assert c==result
 
-class TestClass(unittest.TestCase):
+@pytest.mark.parametrize("a,b,c",[(7,2,5),(27,12,15),(13,5,8),(7,8,15)])
+def test_sub(a,b,c):
+    result=calculator.sub(a,b)
+    assert c==result
 
-    def setUp(self):
-        self.x = 34
-        self.y = 30
+@pytest.mark.parametrize("a,b,c",[(1,2,2),(3,4,12),(11,12,23),(2,7,9)])
+def test_mult(a,b,c):
+    result=calculator.mult(a,b)
+    assert c==result
 
-    def tearDownClass(self):
-        self.x = 0
-        self.y = 0
-
-    def test_Add(self):
-        # act
-        result = calculator.add(self.x, self.y)
-        # assert
-        self.assertEqual(result, self.x + self.y)
-
-    def test_sub(self):
-        result = calculator.sub(self.x, self.y)
-        self.assertEqual(result, self.x - self.y)
-
-    def test_mult(self):
-        result = calculator.mult(self.x, self.y)
-        self.assertEqual(result, self.x * self.y)
-
-    def test_div(self):
-        result = calculator.div(self.x, self.y)
-        self.assertEqual(result, self.x / self.y)
-
-    if __name__ == '__main__':
-        unittest.main()
+@pytest.mark.parametrize("a,b,c",[(10,5,2),(5,2,2.5),(70,2,35),(10,3,5)])
+def test_div(a,b,c):
+    result=calculator.div(a,b)
+    assert c==result
